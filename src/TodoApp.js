@@ -5,7 +5,7 @@ import TodoForm from './TodoForm';
 
 export default function TodoApp() {
     const initialTodos = [
-        { id: 1, task: "Buy groceries", completed: false },
+        { id: 1, task: "Buy groceries", completed: true },
         { id: 2, task: "Read a book", completed: false },
         { id: 3, task: "Go for a run", completed: true }
     ];
