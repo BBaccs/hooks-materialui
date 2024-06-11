@@ -22,11 +22,12 @@ export default function TodoApp() {
                     <Typography color='inherit'>TODOS with HOOKS</Typography>
                 </Toolbar>
             </AppBar>
-            <TodoForm myNameisaddTodo={addTodo} />
-            <TodoList todos={todos}>
-
-            </TodoList>
-            <Grid>
+            <Grid container style={{ marginTop: '1rem', justifyContent: 'center' }}>
+                <Grid item xs={11} md={8} lg={4}>
+                    <TodoForm myNameisaddTodo={addTodo} />
+                    <TodoList todos={todos}>
+                    </TodoList>
+                </Grid>
             </Grid>
         </Paper>
     )

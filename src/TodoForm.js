@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, TextField, ListItem, ListItemText, Divider } from '@mui/material';
+import { Paper, TextField } from '@mui/material';
 import useInputState from './hooks/useInputState';
 
 export default function TodoForm({ myNameisaddTodo }) {
@@ -12,7 +12,15 @@ export default function TodoForm({ myNameisaddTodo }) {
                 myNameisaddTodo(value);  // this should be called addToDo but I'm emphasing something here for learning.
                 resetValue();
             }}>
-                <TextField id="outlined-basic" label="" variant="outlined" value={ value } onChange={ handleValueChange } />
+                <TextField
+                id="outlined-basic" 
+                label="Add new todo" 
+                variant="standard" 
+                value={ value } 
+                onChange={ handleValueChange } 
+                margin='normal'
+                fullWidth
+            />
             </form>
         </Paper>
     )
