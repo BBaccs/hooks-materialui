@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, Paper, AppBar, Toolbar, Grid } from '@mui/material';
 import TodoList from './TodoList';
+import TodoForm from './TodoForm';
 
 export default function TodoApp() {
     const initialTodos = [
@@ -8,17 +9,22 @@ export default function TodoApp() {
         { id: 2, task: "Read a book", completed: false },
         { id: 3, task: "Go for a run", completed: true }
     ];
-    
-    const [ todos, setTodos ] = useState(initialTodos);
+
+    const [todos, setTodos] = useState(initialTodos);
+    const addTodo = newTodoText => {
+        setTodos([...todos, { id: 4, task: newTodoText, completed: false }])
+    }
+
     return (
         <Paper>
-            <AppBar>
+            <AppBar className='appBar'>
                 <Toolbar>
                     <Typography color='inherit'>TODOS with HOOKS</Typography>
                 </Toolbar>
             </AppBar>
+            <TodoForm myNameisaddTodo={addTodo} />
             <TodoList todos={todos}>
-        
+
             </TodoList>
             <Grid>
             </Grid>
