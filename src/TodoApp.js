@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Typography, Paper, AppBar, Toolbar, Grid } from '@mui/material';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
@@ -14,6 +14,11 @@ export default function TodoApp() {
     const addTodo = newTodoText => {
         setTodos([...todos, { id: 4, task: newTodoText, completed: false }])
     }
+    const removeTodo = todosIDwouldBeAgoodNameForMe => {
+        console.log(todosIDwouldBeAgoodNameForMe);
+        const updateTodos = todos.filter(todo => todo.id !== todosIDwouldBeAgoodNameForMe);
+        setTodos(updateTodos);
+    }
 
     return (
         <Paper>
@@ -25,7 +30,7 @@ export default function TodoApp() {
             <Grid container style={{ marginTop: '1rem', justifyContent: 'center' }}>
                 <Grid item xs={11} md={8} lg={4}>
                     <TodoForm myNameisaddTodo={addTodo} />
-                    <TodoList todos={todos}>
+                    <TodoList todos={todos} removeTodo={removeTodo}>
                     </TodoList>
                 </Grid>
             </Grid>

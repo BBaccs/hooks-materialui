@@ -1,12 +1,11 @@
 import React from 'react';
 import { ListItem, ListItemText, Checkbox } from '@mui/material';
-import DoneIcon from '@mui/icons-material/Done';
 import DeleteIcon from '@mui/icons-material/Delete';
 import useToggle from './hooks/useToggle';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 
-export default function Todo({ task, completed }) {
+export default function Todo({ task, completed, removeTodo, id }) {
     const [isCompleted, toggleCompleted] = useToggle(completed);
     return (
         <ListItem>
@@ -14,8 +13,8 @@ export default function Todo({ task, completed }) {
                 {task}
                 <Checkbox tabIndex={-1} checked={isCompleted} onClick={toggleCompleted} />
             </ListItemText>
-            <IconButton aria-label="Delete" onClick={() => console.log('hi')}>
-                <DeleteIcon/>
+            <IconButton aria-label="Delete" onClick={ () => removeTodo(id) }>
+                <DeleteIcon />
             </IconButton>
             <IconButton aria-label="Edit" onClick={() => console.log('hi')}>
                 <EditIcon color="primary"/>
