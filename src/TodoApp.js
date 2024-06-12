@@ -20,19 +20,18 @@ export default function TodoApp() {
         const updateTodos = todos.filter(todo => todo.id !== todosIDwouldBeAgoodNameForMe);
         setTodos(updateTodos);
     }
-    const editToDo = (todoID, todoTask)=> {
-        // console.log(todoID);
-        const updateTodos = todos.filter(todo => todo.id !== todoID);
-        console.log( todoID, todoTask);
-        // setTodos([...todos, { task: todoTask }])
-    }
     const toggleTodo = todoId => {
         const updateTodos = todos.map(todo => {
-          return todo.id === todoId ? {...todo, completed: !todo.completed} : todo;
+            return todo.id === todoId ? { ...todo, completed: !todo.completed } : todo;
         });
         setTodos(updateTodos);
-      }
-
+    }
+    const editToDo = (todoID, newTask) => {
+        const updatedTodos = todos.map(todo => {
+            return todo.id === todoID ? { ...todo, task: newTask } : todo;
+        });
+        setTodos(updatedTodos);
+    };
 
     return (
         <Paper>
@@ -44,7 +43,7 @@ export default function TodoApp() {
             <Grid container style={{ marginTop: '1rem', justifyContent: 'center' }}>
                 <Grid item xs={11} md={8} lg={4}>
                     <TodoForm myNameisaddTodo={addTodo} />
-                    <TodoList todos={todos} removeTodo={removeTodo} editToDo={editToDo} toggleTodo={toggleTodo}>
+                    <TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} editToDo={editToDo}>
                     </TodoList>
                 </Grid>
             </Grid>
