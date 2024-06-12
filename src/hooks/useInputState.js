@@ -14,4 +14,4 @@ export default initialVal => {
 
 
 // Example of using in another file
-// const [ age, handleAgeChange, resetAge ]; = useFormState('');
+// const [ age, handleAgeChange, resetAge ] = useFormState('');
