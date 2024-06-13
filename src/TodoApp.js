@@ -1,38 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 import { Typography, Paper, AppBar, Toolbar, Grid } from '@mui/material';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
+import useToDoState from './hooks/useToDoState';
 
 export default function TodoApp() {
-    // const initialTodos = [
-    //     { id: 1, task: "Buy groceries", completed: true },
-    //     { id: 2, task: "Read a book", completed: false },
-    //     { id: 3, task: "Go for a run", completed: true }
-    // ];
+    const initialTodos = JSON.parse(window.localStorage.getItem('todos') || "[]");
+    const {todos, addTodo, removeTodo, toggleTodo, editToDo} = useToDoState(initialTodos);
 
-    const initialTodos = JSON.parse(window.localStorage.getItem('todo') || "[]");
-
-    const [todos, setTodos] = useState(initialTodos);
-    const addTodo = newTodoText => {
-        setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }])
-    }
-    const removeTodo = todosIDwouldBeAgoodNameForMe => {
-        const updateTodos = todos.filter(todo => todo.id !== todosIDwouldBeAgoodNameForMe);
-        setTodos(updateTodos);
-    }
-    const toggleTodo = todoId => {
-        const updateTodos = todos.map(todo => {
-            return todo.id === todoId ? { ...todo, completed: !todo.completed } : todo;
-        });
-        setTodos(updateTodos);
-    }
-    const editToDo = (todoID, newTask) => {
-        const updatedTodos = todos.map(todo => {
-            return todo.id === todoID ? { ...todo, task: newTask } : todo;
-        });
-        setTodos(updatedTodos);
-    };
+    // Cleaned this up by moving to hooks/useStateToDo.js
+    // const [todos, setTodos] = useState(initialTodos);
+    // const addTodo = newTodoText => {
+    //     setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }])
+    // }
+    // const removeTodo = todosIDwouldBeAgoodNameForMe => {
+    //     const updateTodos = todos.filter(todo => todo.id !== todosIDwouldBeAgoodNameForMe);
+    //     setTodos(updateTodos);
+    // }
+    // const toggleTodo = todoId => {
+    //     const updateTodos = todos.map(todo => {
+    //         return todo.id === todoId ? { ...todo, completed: !todo.completed } : todo;
+    //     });
+    //     setTodos(updateTodos);
+    // }
+    // const editToDo = (todoID, newTask) => {
+    //     const updatedTodos = todos.map(todo => {
+    //         return todo.id === todoID ? { ...todo, task: newTask } : todo;
+    //     });
+    //     setTodos(updatedTodos);
+    // };
 
     useEffect(() => {
         window.localStorage.setItem('todos', JSON.stringify(todos));
@@ -56,14 +53,3 @@ export default function TodoApp() {
         </Paper>
     )
 }
-
-
-
-// - TodoApp - manages state
-//     -TodoForm - we create a new to do in to do form and pass up that value to todo app
-//         -TodoList - 
-//             -TodoItem - 
-
-
-
-// each todo withh have an id,task,completed
