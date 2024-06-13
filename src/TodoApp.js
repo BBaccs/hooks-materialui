@@ -5,11 +5,13 @@ import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 
 export default function TodoApp() {
-    const initialTodos = [
-        { id: 1, task: "Buy groceries", completed: true },
-        { id: 2, task: "Read a book", completed: false },
-        { id: 3, task: "Go for a run", completed: true }
-    ];
+    // const initialTodos = [
+    //     { id: 1, task: "Buy groceries", completed: true },
+    //     { id: 2, task: "Read a book", completed: false },
+    //     { id: 3, task: "Go for a run", completed: true }
+    // ];
+
+    const initialTodos = JSON.parse(window.localStorage.getItem('todo') || "[]");
 
     const [todos, setTodos] = useState(initialTodos);
     const addTodo = newTodoText => {
