@@ -4,12 +4,14 @@ import { Typography, Paper, AppBar, Toolbar, Grid } from '@mui/material';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import useToDoState from './hooks/useToDoState';
+import useLocalStorageState from './hooks/UseLocalStorageState';
 
 export default function TodoApp() {
     const initialTodos = JSON.parse(window.localStorage.getItem('todos') || "[]");
     const {todos, addTodo, removeTodo, toggleTodo, editToDo} = useToDoState(initialTodos);
 
-    // Cleaned this up by moving to hooks/useStateToDo.js
+    // // Cleaned this up by moving to hooks/useStateToDo.js
+
     // const [todos, setTodos] = useState(initialTodos);
     // const addTodo = newTodoText => {
     //     setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }])
@@ -30,12 +32,12 @@ export default function TodoApp() {
     //     });
     //     setTodos(updatedTodos);
     // };
+    // useEffect(() => {
+    //     window.localStorage.setItem('todos', JSON.stringify(todos));
+    //     console.log('todos',todos)
+    // }, [todos]);
 
-    useEffect(() => {
-        window.localStorage.setItem('todos', JSON.stringify(todos));
-        console.log('todos',todos)
-    }, [todos]);
-
+  
     return (
         <Paper>
             <AppBar className='appBar'>

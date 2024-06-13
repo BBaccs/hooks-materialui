@@ -1,10 +1,10 @@
 // Not about re using this logic but just to clean up the component:
-import { useState } from "react";
+import UseLocalStorageState from './UseLocalStorageState';
 import { v4 as uuidv4 } from 'uuid';
 
 export default initialTodos => {
 
-    const [todos, setTodos] = useState(initialTodos);
+    const [todos, setTodos] = UseLocalStorageState("todos", initialTodos);
 
     return {
         todos,
