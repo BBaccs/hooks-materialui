@@ -10,7 +10,7 @@ export default function Todo({ id, task, completed, removeTodo, editToDo, toggle
     const [isEditing, toggleIsEditing] = useToggle(false);
     return (
         <ListItem style={{ width: '100%', display: 'block' }}>
-            {isEditing ? <EditToDoForm id={id} task={task} editToDo={editToDo} toggleEditForm={useToggle}></EditToDoForm> :
+            {isEditing ? <EditToDoForm id={id} task={task} editToDo={editToDo} toggleEditForm={toggleIsEditing}></EditToDoForm> :
                 <>
                     <ListItemText style={{ textDecoration: completed ? "line-through" : "none" }} >
                         {task}

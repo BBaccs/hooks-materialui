@@ -5,7 +5,7 @@ import useInputState from './hooks/useInputState';
 export default function EditToDoForm({ id, task, editToDo, toggleEditForm }) {
     const [value, handleChange, reset] = useInputState(task);
     return (
-        <form onSubmit={(e) => {
+        <form onSubmit={e => {
             e.preventDefault();
             editToDo(id, value);
             reset();
@@ -15,7 +15,7 @@ export default function EditToDoForm({ id, task, editToDo, toggleEditForm }) {
                 margin="normal"
                 style={{ width: '100%' }}
                 value={value}
-                // onChange={(e) => handleChange}
+                onChange={handleChange}
             />
         </form>
     )

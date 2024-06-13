@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Typography, Paper, AppBar, Toolbar, Grid } from '@mui/material';
 import TodoList from './TodoList';
@@ -16,7 +16,6 @@ export default function TodoApp() {
         setTodos([...todos, { id: uuidv4(), task: newTodoText, completed: false }])
     }
     const removeTodo = todosIDwouldBeAgoodNameForMe => {
-        console.log(todosIDwouldBeAgoodNameForMe);
         const updateTodos = todos.filter(todo => todo.id !== todosIDwouldBeAgoodNameForMe);
         setTodos(updateTodos);
     }
@@ -32,6 +31,11 @@ export default function TodoApp() {
         });
         setTodos(updatedTodos);
     };
+
+    useEffect(() => {
+        window.localStorage.setItem('todos', JSON.stringify(todos));
+        console.log('todos',todos)
+    }, [todos]);
 
     return (
         <Paper>
